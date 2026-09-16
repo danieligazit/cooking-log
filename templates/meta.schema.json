@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CookingSessionMeta",
+  "description": "Metadata schema for a cooking log session",
+  "type": "object",
+  "required": [
+    "date",
+    "title",
+    "type",
+    "course",
+    "corpus_role",
+    "servings",
+    "rating",
+    "rating_scale",
+    "tags"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Execution date in YYYY-MM-DD format"
+    },
+    "title": {
+      "type": "string",
+      "description": "Formal dish name"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["savory", "sweet", "beverage", "ferment", "pantry"],
+      "description": "High-level flavor profile domain"
+    },
+    "course": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "main",
+          "small-plate",
+          "side",
+          "starter",
+          "condiment",
+          "snack",
+          "dessert"
+        ]
+      },
+      "minItems": 1
+    },
+    "corpus_role": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "foundation",
+          "technique-study",
+          "weeknight-staple",
+          "showcase",
+          "experiment"
+        ]
+      },
+      "minItems": 1
+    },
+    "servings": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "multipleOf": 0.5
+    },
+    "rating_scale": {
+      "type": "string",
+      "default": "1-5"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
